@@ -1,0 +1,113 @@
+﻿CREATE TABLE EMPLOYEE (
+         Ssn                     CHAR(9)                 NOT NULL,
+         Name                    VARCHAR (20)           NOT NULL,
+         Phone                   VARCHAR (12)          NOT NULL,
+         Address                 CHAR (25),     
+         Birth_Date              DATE, 
+         Bank_No                 VARCHAR(12)          NOT NULL,
+         Salary                   DECIMAL (10, 2),
+         PRIMARY KEY (Ssn)
+);
+________________
+
+
+CREATE TABLE ITEM (
+        ItemNo                     INT                NOT NULL,
+        Item_Type                VARCHAR (12)        NOT NULL,
+        Item_Price                REAL               NOT NULL,
+        Item_Name                VARCHAR (35)        NOT NULL,
+        Brand_Name                VARCHAR (30),
+        Aisle                     VARCHAR (3)        NOT NULL,
+        PRIMARY KEY (ItemNo)
+);
+________________
+
+
+CREATE TABLE  CUSTOMER ( 
+        CustID                    INT           NOT NULL,
+        CustomerName        VARCHAR (25)        NOT NULL,
+        Address                VARCHAR (25),
+        Email                   VARCHAR (35)    NOT NULL,
+        Phone                    VARCHAR(12)    NOT NULL,
+PRIMARY KEY (CustID)
+);
+________________
+
+
+CREATE TABLE STORE (
+             StoreID              INT                NOT NULL,
+             StoreLocation        VARCHAR (10)       NOT NULL,
+             PRIMARY KEY (StoreID)
+);
+________________
+
+
+CREATE TABLE STORE_EMPLOYEE ( 
+StoreID                                 INT                  NOT NULL,
+            Essn                        HAR(9)               NOT NULL,
+PRIMARY KEY (StoreID, Essn) ,
+FOREIGN KEY (StoreID) REFERENCES STORE(StoreID)
+ON DELETE CASCADE
+ON UPDATE CASCADE,
+FOREIGN KEY(Essn) REFERENCES EMPLOYEE(SSN)
+ON DELETE SET NULL 
+ON UPDATE CASCADE          
+);
+________________
+
+
+CREATE TABLE STORE_ITEM (
+StoreID               INT                        NOT NULL,
+ItemNo                INT                        NOT NULL,
+PRIMARY KEY (StoreID, ItemNo) ,
+FOREIGN KEY (StoreID) REFERENCES STORE(StoreID)
+ON DELETE CASCADE
+ON UPDATE CASCADE,
+FOREIGN KEY (ItemNo) REFERENCES ITEM(ItemNo)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+________________
+
+
+CREATE TABLE STORE_CUSTOMER(
+StoreID                       INT                          NOT NULL,
+CustID                        INT                           NOT NULL,
+PRIMARY KEY (StoreID, CustID) ,
+FOREIGN KEY (StoreID) REFERENCES STORE(StoreID)
+ON DELETE CASCADE 
+ ON UPDATE CASCADE,
+FOREIGN KEY (CustID) REFERENCES  CUSTOMER(CustID)
+ON DELETE SET NULL
+ON UPDATE CASCADE
+);
+________________
+
+
+CREATE TABLE WORKS_FOR (
+StoreID                                            INT     NOT NULL,
+                   Essn                          CHAR(9)   NOT NULL,
+                   Hours                            INT     NOT NULL,
+PRIMARY KEY (StoreID, Essn) ,
+FOREIGN KEY (StoreID) REFERENCES STORE(StoreID)
+ON DELETE CASCADE
+ON UPDATE CASCADE,
+FOREIGN KEY (Essn ) REFERENCES  EMPLOYEE(SSN)
+ON DELETE SET NULL
+ON UPDATE CASCADE
+);
+________________
+
+
+CREATE TABLE SALE(
+CustID                INT                NOT NULL,
+ItemNo                INT                NOT NULL,
+Quantity              INT                NOT NULL,
+PRIMARY KEY (CustID, ItemNo),
+FOREIGN KEY (CustID) REFERENCES CUSTOMER(CustID)
+ON DELETE SET NULL
+ON UPDATE CASCADE,
+FOREIGN KEY (ItemNo) REFERENCES ITEM(ItemNo)
+ON DELETE SET NULL
+ON UPDATE CASCADE
+);

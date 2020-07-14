@@ -1,0 +1,97 @@
+// A query to select all the employees with salary above $35000
+
+	SELECT	*
+	FROM	EMPLOYEE
+	WHERE	Salary > 35000;
+
+// A query to update an employee’s phone number to '609-256-4528'
+
+         UPDATE   employee
+         SET      Phone = ‘609-256-4528’ 
+         WHERE    Phone = ‘593855036’;
+         
+// A query to remove an employee from the database
+
+	DELETE	FROM EMPLOYEE
+	WHERE	Ssn = ‘725-55-4251’;
+	
+// A query to display all of the item names which are of type ‘FROZEN’ and brand_name is ‘Swad’
+
+	SELECT   Item_Name
+	FROM     ITEM
+	WHERE    Item_Type = ‘FROZEN’ AND Brand_Name = ‘Swad’;
+
+// A query to display all of the items that have “Garlic” in the item_name
+
+	SELECT    *
+	FROM     ITEM;
+	WHERE    Item_Name LIKE ‘%Garlic%’;
+	
+// A  query to display all the items in aisle starting with ‘5’
+	
+	SELECT   ItemNo, Item_Name
+	FROM     ITEM
+	WHERE    Aisle LIKE ‘5%’;
+	
+// A query to output the name “CATHERIN MCCREIGHT”
+
+	SELECT	CustomerName
+	FROM	CUSTOMER
+	WHERE	CustID = 05;
+	
+// A query to change Jeff Dutter’s phone number to 201-567-5623
+
+	UPDATE	CUSTOMER 
+	SET	Phone = ‘2015675623’
+	WHERE	CustomerName = ‘JEFF DUTTER’;
+	
+// A query to list the emails of the last five customers on the list
+
+	SELECT	Email 
+	FROM	CUSTOMER
+	WHERE	CustID >= 10;
+
+// A query to update customer Nicola Evangelista’s name to ‘Nicola Lorenzo’
+
+	UPDATE	CUSTOMER
+	SET	CustomerName = Nicola Lorenzo’
+	WHERE	CustID = ‘01’;
+	
+// A query to display the names of employees who have worked over 10 hours
+
+	SELECT		EMPLOYEE.Name
+	FROM		WORKS_FOR
+	INNER JOIN	EMPLOYEE ON WORKS_FOR
+	WHERE		EMPLOYEE.Ssn = WORKS_FOR.Ssn AND WORKS_FOR.Hours > 10;
+	
+// A query to insert the number of hours for “BESS BALLS” as 10
+
+	UPDATE	WORKS_FOR
+	SET	Hours = 10
+	WHERE	WORKS_FOR.essn = (SELECT Ssn FROM EMPLOYEE WHERE Name = 'BESS BALLS');
+	
+// A query to delete every entry that takes place in Ewing’s store
+
+	DELETE FROM	WORKS_FOR
+	WHERE		StoreID = (SELECT StoreID FROM STORE WHERE StoreLocation = “Ewing”);
+
+// A query to find the names of the customers who bought 4 ‘Wheat Porottas’
+
+	SELECT DISTINCT	CustomerName
+	FROM			CUSTOMER AS c , ITEM AS  i , SALE AS s
+	WHERE			i.ItemName = ‘Wheat Porotta’ AND s.Quantity = 4;
+	
+// A query to insert a purchase of 4 Garden Veggie Chips by JEFF DUTTER
+
+	INSERT INTO	Sale (CustID, ItemNo, Quantity)
+	VALUES		(03, 61, 4);
+	
+// A query to remove the erroneous purchase of 10 Maiyas Mirchi Bajji
+
+	DELETE FROM	SALE
+	WHERE		
+			SELECT ItemNo
+			FROM ITEM
+			WHERE Item_Name = ‘Mirchi Bajji’ AND Brand_Name = ‘Maiyas’ AND Quantity = 10;
+
+

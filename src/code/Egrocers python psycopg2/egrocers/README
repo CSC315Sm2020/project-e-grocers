@@ -1,0 +1,23 @@
+----
+IMPORTANT configuration changes:
+
+# install psycopg2 python package
+sudo apt-get update
+sudo apt-get install python3-psycopg2
+
+# set the postgreSQL password for user 'csc315sm20'
+sudo -u postgres psql
+Usage:
+python3 egrocers.py 
+
+Purpose:
+Demonstrate Python connection to PostgreSQL using the psycopg
+adapter. Connects to the egrocers database from "Seven Databases
+in Seven Days" in the CSC 315 VM.
+
+
+For psycopg documentation:
+https://www.psycopg.org/
+
+This example code is derived from:
+https://www.postgresqltutorial.com/postgresql-python/
