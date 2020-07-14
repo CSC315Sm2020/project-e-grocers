@@ -248,4 +248,3 @@ INSERT INTO STORE_Employee (StoreID,Essn) VALUES
 (256, 101539585),
 (984, 389486765),
 (864, 148189798);
-[a]This is the updated data document, do not change anything. All corrections have been made
